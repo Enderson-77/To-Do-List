@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: my-postgres
+    environment:
+      POSTGRES_USER: cassio
+      POSTGRES_PASSWORD: 1234567
+    ports:
+      - "5433:5432"
+    networks:
+      - my-network
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: my-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: me@example.com
+      PGADMIN_DEFAULT_PASSWORD: 1234567
+    ports:
+      - "80:80"
+    networks:
+      - my-network
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin
+
+networks:
+  my-network:
+    driver: bridge
