@@ -1,11 +1,10 @@
 package com.cassio.to_do_list.controller;
 
+import com.cassio.to_do_list.dto.ToDoRequestDTO;
 import com.cassio.to_do_list.dto.ToDoResponseDTO;
 import com.cassio.to_do_list.service.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +18,11 @@ public class ToDoController {
     @GetMapping
     public List<ToDoResponseDTO> getAll() {
         return toDoService.getAll();
+    }
+
+    @PostMapping
+    public void saveTask(@RequestBody ToDoRequestDTO data) {
+        toDoService.saveTask(data);
     }
 
 }
