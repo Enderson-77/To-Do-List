@@ -15,7 +15,7 @@ public class ToDoService {
     private ToDoRepository repository;
 
     public List<ToDoResponseDTO> getAll() {
-        List<ToDoResponseDTO> list = repository.findAll().stream().map(ToDoResponseDTO::new).toList();
+        List<ToDoResponseDTO> list = repository.findAllWithPosition();
         return list;
     }
 
