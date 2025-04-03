@@ -23,8 +23,11 @@ public class ToDoService {
 
     @Transactional
     public void saveTask(ToDoRequestDTO data) {
-        ToDo toDoData = new ToDo(data);
-        repository.save(toDoData);
+        ToDo toDoData = repository.save(new ToDo(data));
+
+        Integer maxPosition = repository.findMaxPosition()+1;
+
+        repository.updateTbBelonging(maxPosition, toDoData.getId());
     }
 
 }
