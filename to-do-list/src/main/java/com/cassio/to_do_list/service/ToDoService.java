@@ -27,7 +27,15 @@ public class ToDoService {
 
         Integer maxPosition = repository.findMaxPosition()+1;
 
+        System.out.println("maxPosition: "+maxPosition);
+        System.out.println("ToDoData.id: "+toDoData.getId());
+
         repository.updateTbBelonging(maxPosition, toDoData.getId());
     }
 
+    @Transactional
+    public void deleteTaskById(Long id) {
+        repository.deleteBelongingByTodoId(id);
+        repository.deleteById(id);
+    }
 }
