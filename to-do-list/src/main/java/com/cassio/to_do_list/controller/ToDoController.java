@@ -1,5 +1,6 @@
 package com.cassio.to_do_list.controller;
 
+import com.cassio.to_do_list.dto.ReplacementDTO;
 import com.cassio.to_do_list.dto.ToDoRequestDTO;
 import com.cassio.to_do_list.dto.ToDoResponseDTO;
 import com.cassio.to_do_list.service.ToDoService;
@@ -28,6 +29,11 @@ public class ToDoController {
     @DeleteMapping("/{id}")
     public void deleteTaskById(@PathVariable Long id) {
         toDoService.deleteTaskById(id);
+    }
+
+    @PostMapping(value = "/replacement")
+    public void move(@RequestBody ReplacementDTO body) {
+        toDoService.move(body.listId(), body.sourceIndex(), body.destinationIndex());
     }
 
 }
